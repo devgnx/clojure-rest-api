@@ -22,24 +22,24 @@
       (is (= "Hello, World!" (:body response)))))
 
   (testing "Test API: Hello :name route"
-    (let [response (request :patch "/api/name" {:name "Joseph"})]
+    (let [response (request :patch "/api/hello-name" {:name "Joseph"})]
       (is (= 200 (:status response)))
       (is (= "Hello, Joseph" (:body response)))))
 
-  (testing "Test API: Echo route param"
-    (let [response (request "/api/echo/Hello")]
+  (testing "Test API: Get by id"
+    (let [response (request "/api/get-by-id/3")]
       (is (= 200 (:status response)))
-      (is (= "Hello" (:body response)))))
+      (is (= "{\"id\":3,\"name\":\"Vincent Vega\"}" (:body response)))))
 
-  (testing "Test API: Echo post param"
-    (let [response (request :post "/api/echo" {:foo "bar"})]
+  (testing "Test API: Save route"
+    (let [response (request :post "/api/save" {:foo "bar"})]
       (is (= 200 (:status response)))
       (is (= "{\"foo\":\"bar\"}" (:body response)))))
 
   (testing "Test API: PUT person"
-    (let [response (request :put "/api/person" {:name "John" :age "21" :favorite-color "blue"})]
+    (let [response (request :put "/api/person" {:person {:name "John" :age "21" :favorite-color "blue"}})]
       (is (= 200 (:status response)))
-      (is (= "{\"name\":\"John\",\"age\":21,\"favorite-color\":\"blue\"}"))))
+      (is (= "{\"name\":\"John\",\"age\":\"21\",\"favorite-color\":\"blue\"}" (:body response)))))
 
   (testing "Test API: Not Found route"
     (let [response (request "/not-found")]

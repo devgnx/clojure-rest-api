@@ -13,4 +13,5 @@
   :main ^:skip-aot clojure-rest-api.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}
-             :dev {:plugins [[com.jakemccrary/lein-test-refresh "0.24.1"]]}})
+             :dev {:plugins [[lein-cloverage "1.1.1"]
+                             [com.jakemccrary/lein-test-refresh "0.24.1"]]}})
