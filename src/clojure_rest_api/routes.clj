@@ -13,14 +13,18 @@
   (GET "/api/hello-world" []
     (response "Hello, World!"))
 
-  (PATCH "/api/name" {:keys [params]}
+  (PATCH "/api/hello-name" {:keys [params]}
     (let [{:keys [name]} params]
       (response (str "Hello, " name))))
 
-  (GET "/api/echo/:route-param" [route-param]
-    (response route-param))
+  (GET "/api/get-by-id/:id" [id]
+    (response
+     (some #(and (= (Integer/parseInt id) (:id %)) %)
+           [{:id 1 :name "Mia Wallace"}
+            {:id 2 :name "Jules Winnfield"}
+            {:id 3 :name "Vincent Vega"}])))
 
-  (POST "/api/echo" {:keys [params]}
+  (POST "/api/save" {:keys [params]}
     (response params))
 
   (PUT "/api/person" {:keys [params]}

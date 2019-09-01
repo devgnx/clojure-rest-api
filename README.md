@@ -3,8 +3,7 @@
 A simple Clojure boilerplate for REST API Apps
 
 ### Requirements:  
-- Lein v1.0.0 https://leiningen.org
-- CURL https://curl.haxx.se/
+Install Leiningen v1.0.0 from https://leiningen.org
 
 ___
 
@@ -15,9 +14,41 @@ ___
 lein run
 ```
 
-#### API: Ping/Pong route
+#### API Routes
+```sh
+curl -s http://localhost:8080/api/ping
+
+# pong
 ```
-curl -s localhost:8080/api/ping
+
+```sh
+curl -s http://localhost:8080/api/hello-world
+
+# Hello, World!
+```
+
+```sh
+curl -s -X PATCH http://localhost:8080/api/hello-name -H "Content-Type: application/json" -d '{"name":"Quentin Tarantino"}'
+
+# Hello, Quentin Tarantino
+```
+
+```sh
+curl -s http://localhost:8080/api/get-by-id/2
+
+# {"id":2,"name":"Jules Winnfield"}
+```
+
+```sh
+curl -s -X POST http://localhost:8080/api/save -H "Content-Type: application/json" -d '{"movie":"Pulp Fiction","year":1995}'
+
+# {"movie":"Pulp Fiction","year":1995}
+```
+
+```sh
+curl -s -X PUT http://localhost:8080/api/person -H "Content-type: application/json" -d '{"person":{"name":"Marcellus Wallace"}}'
+
+# {"name":"Marcellus Wallace"}
 ```
 
 ___
